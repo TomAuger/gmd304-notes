@@ -736,3 +736,162 @@ But what if we wanted to span the entire content area?
 
 ---
 
+# Computed styles
+
+* `width` is computed (there are no styles directly controlling it)
+* but `max-width` is defined.
+
+``` scss
+// base.scss (continued)
+
+.site-content {
+	.entry-header {
+		background-color: red;
+		max-width: none;
+	}
+}
+```
+
+---
+
+# Align the `h1`
+
+Use the Inspector to test your CSS.
+
+``` scss
+// base.scss (continued)
+
+.site-content {
+	.entry-header {
+		background-color: red;
+		max-width: none;
+	}
+	.entry-title {
+		margin-left: 25%;
+		padding-top: 18px;
+	}
+}
+```
+
+---
+
+# SASSification
+
+``` scss
+// base.scss (continued)
+
+.site-content {
+	.entry-header {
+*		background-color: $red;
+		max-width: none;
+	}
+	.entry-title {
+		margin-left: 25%;
+		padding-top: 18px;
+	}
+}
+```
+
+---
+
+# Google fonts
+
+https://www.google.com/fonts
+
+* Show all styles
+* Choose a font that has a variety of weights
+
+---
+
+# Create a Partial
+
+* A partial is never intended to be used on its own
+* It doesn't create its own .css file
+* will become part of your main css
+
+```
+sass/_fonts.scss
+```
+
+---
+
+# Import a Google font
+
+``` scss
+// _fonts.scss
+
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700);
+```
+
+``` scss
+// At the top of sass/base.scss
+
+*@import "fonts";
+
+*$font: 'Source Sans Pro', sans-serif;
+$red: #ff1f14;
+
+body {
+	font-family: $font;
+*	font-weight: 300;
+	color: $red;
+}
+
+// (more cut off...)
+```
+
+---
+
+# Make a nice mixin
+
+``` scss
+// _fonts.scss
+
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700);
+
+@mixin SourceSans($weight: 'normal'){
+	font-family: 'Source Sans Pro', sans-serif;
+
+	@if ($weight == 'heavy'){
+		font-weight: 700;
+	}
+
+	@else if ($weight == 'light'){
+		font-weight: 300;
+	}
+
+	@else {
+		font-weight: 400;
+	}
+}
+```
+
+---
+
+# And use it...
+
+``` scss
+// sass/base.scss
+
+@import "fonts";
+
+$red: #ff1f14;
+
+body {
+	@include SourceSans('light');
+	color: $red;
+}
+
+.site-content {
+	.entry-header {
+		background-color: $red;
+		max-width: none;
+	}
+	.entry-title {
+		margin-left: 25%;
+		padding-top: 18px;
+
+		@include SourceSans('heavy');
+	}
+}
+```
