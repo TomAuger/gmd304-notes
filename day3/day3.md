@@ -22,6 +22,7 @@ http://sass-lang.com
 # Major SASS features
 
 * Nesting
+* Extension
 * Variables
 * Math
 * Imports
@@ -96,6 +97,76 @@ body.red {
 
 ---
 
+# Extension
+
+## SCSS
+
+```
+.message {
+  border: 1px solid #ccc;
+  padding: 10px;
+  color: #333;
+}
+
+.success {
+  @extend .message;
+  border-color: green;
+}
+
+.error {
+  @extend .message;
+  border-color: red;
+}
+```
+
+---
+
+# Extension
+
+## SCSS
+
+```
+.message {
+  border: 1px solid #ccc;
+  padding: 10px;
+  color: #333;
+}
+
+.success {
+*  @extend .message;
+  border-color: green;
+}
+
+.error {
+*  @extend .message;
+  border-color: red;
+}
+```
+
+---
+
+# Extension
+
+## Generated CSS
+
+``` css
+*.message, .success, .error {
+  border: 1px solid #cccccc;
+  padding: 10px;
+  color: #333;
+}
+
+.success {
+  border-color: green;
+}
+
+.error {
+  border-color: red;
+}
+```
+
+---
+
 # Variables
 
 ```
@@ -153,16 +224,16 @@ body {
 
 # Math
 
-## SCSS
+## CSS
 
-```
-$padding: 10;
-
+``` css
 #fixed-box {
-    padding: $padding;
-    width: 300px - 2 * $padding;
+    padding: 10px;
+*    width: 300px; /* really? */
 }
 ```
+
+This is probably an error, since padding gets added to the width, resulting in a width of 320px;
 
 ---
 
@@ -171,10 +242,10 @@ $padding: 10;
 ## SCSS
 
 ```
-*$padding: 10;
+$padding: 10px;
 
 #fixed-box {
-*    padding: $padding;
+    padding: $padding;
 *    width: 300px - 2 * $padding;
 }
 ```
@@ -187,7 +258,165 @@ $padding: 10;
 
 ``` css
 #fixed-box {
-    padding: 10;
-    width: 260px;
+    padding: 10px;
+    width: 280px;
+}
+```
+
+---
+
+# Imports
+
+Like CSS `@import` but doesn't create an additional HTTP request.
+
+SCSS files starting with an underscore are assumed to be `@import` only and will not generate their own CSS.
+
+---
+
+# Imports
+
+```
+/* _colours.scss */
+$red: #ff101f;
+$green: #10ff1f;
+$blue: #101fff;
+```
+
+```
+/* style.scss */
+@import "colours";
+
+body {
+    color: $red;
+    background: $green;
+    border: 1px solid $blue;
+}
+```
+
+---
+
+# Mixins
+
+## CSS
+
+``` css
+.box {
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  border-radius: 10px;
+}
+```
+
+How repetitive!
+
+---
+
+# Mixins
+
+## Define the Mixin
+
+```
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+```
+
+---
+
+# Mixins
+
+## Notice the variable
+
+```
+*@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+```
+
+---
+
+# Mixins
+
+## Notice the variable
+
+```
+@mixin border-radius($radius) {
+*  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+```
+
+---
+
+# Mixins
+
+## Notice the variable
+
+```
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+*     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+```
+
+---
+
+# Mixins
+
+## Notice the variable
+
+```
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+*      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+```
+
+---
+
+# Mixins
+
+## Notice the variable
+
+```
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+*          border-radius: $radius;
+}
+```
+
+---
+
+# Mixins
+
+## Now use it
+
+```
+.box { @include border-radius(10px); }
+```
+
+## Generated CSS
+
+``` css
+.box {
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  border-radius: 10px;
 }
 ```
