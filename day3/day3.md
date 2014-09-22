@@ -59,7 +59,7 @@ h1 {
 
 ## SCSS
 
-``` sass
+``` scss
 h1 {
     font-size: 30px;
 }
@@ -103,7 +103,7 @@ body.red {
 
 ## SCSS
 
-```
+``` scss
 .message {
   border: 1px solid #ccc;
   padding: 10px;
@@ -127,7 +127,7 @@ body.red {
 
 ## SCSS
 
-```
+``` scss
 .message {
   border: 1px solid #ccc;
   padding: 10px;
@@ -171,7 +171,7 @@ body.red {
 
 # Variables
 
-```
+``` scss
 $font: Helvetica, Arial, sans-serif;
 $red: #ff1f14;
 
@@ -185,7 +185,7 @@ body {
 
 # Variables
 
-```
+``` scss
 *$font: Helvetica, Arial, sans-serif;
 $red: #ff1f14;
 
@@ -199,7 +199,7 @@ body {
 
 # Variables
 
-```
+``` scss
 $font: Helvetica, Arial, sans-serif;
 *$red: #ff1f14;
 
@@ -243,7 +243,7 @@ This is probably an error, since padding gets added to the width, resulting in a
 
 ## SCSS
 
-```
+``` scss
 $padding: 10px;
 
 #fixed-box {
@@ -277,7 +277,7 @@ SCSS files starting with an underscore are assumed to be `@import` only and will
 
 # Imports
 
-```
+``` scss
 /* _colours.scss */
 $red: #ff101f;
 $green: #10ff1f;
@@ -318,7 +318,7 @@ How repetitive!
 
 ## Define the Mixin
 
-```
+``` scss
 @mixin border-radius($radius) {
   -webkit-border-radius: $radius;
      -moz-border-radius: $radius;
@@ -348,7 +348,7 @@ How repetitive!
 
 ## Notice the variable
 
-```
+``` scss
 @mixin border-radius($radius) {
 *  -webkit-border-radius: $radius;
      -moz-border-radius: $radius;
@@ -363,7 +363,7 @@ How repetitive!
 
 ## Notice the variable
 
-```
+``` scss
 @mixin border-radius($radius) {
   -webkit-border-radius: $radius;
 *     -moz-border-radius: $radius;
@@ -378,7 +378,7 @@ How repetitive!
 
 ## Notice the variable
 
-```
+``` scss
 @mixin border-radius($radius) {
   -webkit-border-radius: $radius;
      -moz-border-radius: $radius;
@@ -393,7 +393,7 @@ How repetitive!
 
 ## Notice the variable
 
-```
+``` scss
 @mixin border-radius($radius) {
   -webkit-border-radius: $radius;
      -moz-border-radius: $radius;
@@ -408,7 +408,7 @@ How repetitive!
 
 ## Now use it
 
-```
+``` scss
 .box { @include border-radius(10px); }
 ```
 
@@ -427,7 +427,7 @@ How repetitive!
 
 # It gets better...
 
-```
+``` scss
 @mixin frutiger($style: 'normal'){
     @if $style == 'italic' {
         font-family:'FrutigerLTW01-56Italic';
@@ -442,7 +442,7 @@ How repetitive!
 }
 ```
 
-```
+``` scss
 body {
     @include frutiger('italic');
 }
