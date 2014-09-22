@@ -28,7 +28,9 @@ http://sass-lang.com
 * Imports
 * Mixins
 
-And there is more...
+---
+
+# And there is more...
 
 http://sass-lang.com/documentation/
 
@@ -69,7 +71,7 @@ h1 {
 
 ## SCSS
 
-```
+``` scss
 body {
     font-size: 10px;
     
@@ -420,3 +422,68 @@ How repetitive!
   border-radius: 10px;
 }
 ```
+
+---
+
+# It gets better...
+
+```
+@mixin frutiger($style: 'normal'){
+    @if $style == 'italic' {
+        font-family:'FrutigerLTW01-56Italic';
+    }
+    
+    @else {
+        font-family:'FrutigerLTW01-55Roman';
+    }
+    
+    font-weight: normal;
+	font-style: normal;
+}
+```
+
+```
+body {
+    @include frutiger('italic');
+}
+```
+
+---
+
+# Mind blown yet?
+
+## Generated CSS
+
+``` css
+body {
+    font-family:'FrutigerLTW01-56Italic';
+    font-weight: normal;
+	font-style: normal;
+}
+```
+
+---
+
+# Okay.
+
+# Take a deep breath.
+
+# Don't panic.
+
+---
+
+# SASS in WordPress
+
+## What you'll need:
+
+* WordPress running locally
+* A child theme of twentyfourteen
+* A 'css' and a 'sass' (or 'scss') folder
+* NetBeans, with its CSS preprocessor properly configured.
+
+---
+
+# Let's get started!
+
+---
+
