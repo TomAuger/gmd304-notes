@@ -720,6 +720,15 @@ p {
 
 ---
 
+# Specificity in a nutshell
+
+7) Don't be more specific than you need to be!
+
+* you may need to over-ride your over-ride down the road...
+* so __don't__ Nest All The Things!
+
+---
+
 # Putting specificity to work
 
 ``` scss
@@ -849,7 +858,7 @@ body {
 
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700);
 
-@mixin SourceSans($weight: 'normal'){
+@mixin PrimaryFont($weight: 'normal'){
 	font-family: 'Source Sans Pro', sans-serif;
 
 	@if ($weight == 'heavy'){
@@ -878,7 +887,7 @@ body {
 $red: #ff1f14;
 
 body {
-	@include SourceSans('light');
+	@include PrimaryFont('light');
 	color: $red;
 }
 
@@ -891,7 +900,33 @@ body {
 		margin-left: 25%;
 		padding-top: 18px;
 
-		@include SourceSans('heavy');
+		@include PrimaryFont('heavy');
+	}
+}
+```
+
+---
+
+# Easy change...
+
+``` scss
+// _fonts.scss
+
+*@import url(http://fonts.googleapis.com/css?family=Roboto:900,300,500);
+
+@mixin PrimaryFont($weight: 'normal'){
+*	font-family: 'Roboto', sans-serif;
+
+	@if ($weight == 'heavy'){
+*		font-weight: 900;
+	}
+
+	@else if ($weight == 'light'){
+*		font-weight: 300;
+	}
+
+	@else {
+*		font-weight: 500;
 	}
 }
 ```
