@@ -10,6 +10,12 @@ WordPress Template Functions
 
 ---
 
+# Play along!
+
+http://codepad.viper-7.com/
+
+---
+
 layout: true
 class: center, middle
 
@@ -1291,3 +1297,487 @@ $email = "teach.me.tom@outlook.com";
 $email = "teach.me.tom@outlook.com";
 *$domain = substr(strstr($email, "@"), 1);
 ```
+
+---
+
+# Numeric variables
+
+``` php
+$x = 25;
+$y = -1;
+$pi = 3.14159265359;
+$half = 1/2;
+echo $half
+```
+
+Result
+
+```
+0.5
+```
+
+---
+
+# Mathematical operators
+
+* `+` Addition
+
+* `-` Subtraction
+
+* `*` Multiplication
+
+* `/` Division
+
+---
+
+# Mathematical operators
+
+``` php
+$height = 10;
+$width = 15;
+
+$area = $height * $width;
+
+echo $area;
+```
+
+Result
+
+```
+150
+```
+
+---
+
+# Mathematical operators
+
+``` php
+$a = 3;
+$b = 4;
+
+$hypotenuse = $a * $a + $b * $b;
+
+echo $hypotenuse;
+```
+
+Result
+
+```
+25
+```
+
+---
+
+# Order matters!
+
+``` php
+echo 10 / 2 + 8;
+echo 10 / (2 + 8);
+```
+
+Result
+
+```
+13
+1
+```
+
+---
+
+# Mathematical functions
+
+http://php.net/manual/en/ref.math.php
+
+* `abs()` Absolute (positive) value
+
+* `sin()`, `cos()`, `tan()` Trig functions
+
+* `round()` Rounding
+
+* `max()`, `min()` Maximum and minimum values
+
+---
+
+# Positive values
+
+``` php
+$x1 = 200;
+$x2 = 400;
+
+$distance = abs($x1 - $x2);
+echo $distance;
+
+$distance = abs($x2 - $x1);
+echo $distance;
+```
+
+Result
+
+```
+200
+200
+```
+
+---
+
+# Rounding
+``` php
+echo round(0.25);
+echo round(0.75);
+echo round(-0.25);
+echo round(0.5);
+```
+
+Result
+
+```
+0
+1
+-0
+1
+```
+
+---
+
+# Maximum and minimum values
+
+``` php
+echo max(-3, 5, 10, 20);
+echo min(-3, 5, 10, 20);
+echo max(min(-3, 5), min(10, 20));
+```
+
+Result
+```
+20
+-3
+10
+```
+
+---
+
+# Random numbers!
+
+``` php
+echo rand(1, 10);
+echo rand(1, 10);
+echo rand(1, 10);
+echo rand(1, 10);
+echo rand(1, 10);
+```
+
+Result
+
+```
+5
+1
+7
+10
+5
+```
+
+---
+
+# Functions
+
+``` php
+function double($value){
+    return $value * 2;
+}
+
+echo double(2);
+echo double(10);
+echo double(-5);
+```
+
+Result
+
+```
+4
+20
+-10
+```
+
+---
+
+# Functions
+
+``` php
+function square($value){
+    return $value * $value;
+}
+
+echo square(2);
+echo square(10);
+echo square(-5);
+```
+
+Result
+
+```
+4
+100
+25
+```
+
+---
+
+# Anatomy of a Function
+
+`function` `square(` `$value` `){ ... return ... }`
+
+---
+
+# Anatomy of a Function
+
+.ch[`function`] `square(` `$value` `){ ... return ... }`
+
+Function declaration keyword.
+
+---
+
+# Anatomy of a Function
+
+`function` .ch[`square`]`(` `$value` `){ ... return ... }`
+
+Function name.
+
+---
+
+# Anatomy of a Function
+
+`function` `square`.ch[`(`] `$value` .ch[`)`]`{ ... return ... }`
+
+Arguments list.
+
+---
+
+# Anatomy of a Function
+
+`function` `square(` .ch[`$value`] `){ ... return ... }`
+
+Argument.
+
+---
+
+# Anatomy of a Function
+
+`function` `square(` `$value` `)`.ch[`{`] `... return ...` .ch[`}`]
+
+Function block.
+
+---
+
+# Anatomy of a Function
+
+`function` `square(` `$value` `){ ... `.ch[`return`]` ... }`
+
+(Optional) return statement.
+
+---
+
+# Calling a function
+
+`square(` `4` `);`
+
+---
+
+# Calling a function
+
+.ch[`square`]`(` `4` `);`
+
+Matches function name.
+
+---
+
+# Calling a function
+
+`square`.ch[`(`] `4` .ch[`)`]`;`
+
+Arguments list.
+
+---
+
+# Calling a function
+
+`square(` .ch[`4`] `);`
+
+Arguments should match function signature.
+
+---
+
+# Calling a function
+
+`square(` `4` `)`.ch[`;`]
+
+Don't forget the ;-^
+
+---
+
+# Arguments
+
+``` php
+function no_arguments(){
+    echo "Hello World!";
+}
+
+function one_argument($name){
+    echo "Hello $name!";
+}
+
+function many_arguments($greeting, $name, $noun){
+    echo "$greeting, $name's $noun!";
+}
+
+no_arguments();
+one_argument("class");
+many_arguments("Hi", "Joe", "friend");
+```
+
+```
+Hello World!
+Hello class!
+Hi Joe's friend!
+```
+
+---
+
+# Required arguments
+
+``` php
+function many_arguments($greeting, $name, $noun){
+    echo "$greeting, $name's $noun!";
+}
+
+many_arguments("Hi", "Joe");
+```
+
+---
+
+# Required arguments
+
+``` php
+*function many_arguments($greeting, $name, $noun){
+    echo "$greeting, $name's $noun!";
+}
+
+*many_arguments("Hi", "Joe");
+```
+
+---
+
+# Result
+
+```
+Warning: Missing argument 3 for many_arguments(), called in  
+/code/wY9Iu3 on line 7 and defined in /code/wY9Iu3 on line 3
+
+Notice: Undefined variable: noun in /code/wY9Iu3 on line 4
+Hi, Joe's ! PHP Warning: Missing argument 3 for many_arguments(),  
+called in /code/wY9Iu3 on line 7 and defined in /code/wY9Iu3 on line 3  
+PHP Notice: Undefined variable: noun in /code/wY9Iu3 on line 4
+```
+
+Yuck-a-doo.
+
+---
+
+# Default (optional) arguments
+
+``` php
+function many_arguments($greet = "Hello", $name = "Tom", $noun = "class"){
+    echo "$greet, $name's $noun!";
+}
+
+many_arguments();
+many_arguments("Hi");
+many_arguments("Hi", "Joe");
+many_arguments("Dave");
+```
+
+Result
+
+```
+Hello, Tom's class!
+Hi, Tom's class!
+Hi, Joe's class!
+Dave, Tom's class!
+```
+
+---
+
+# Default (optional) arguments
+
+``` php
+function many_arguments($greet = "Hello", $name = "Tom", $noun = "class"){
+    echo "$greet, $name's $noun!";
+}
+
+many_arguments();
+many_arguments("Hi");
+many_arguments("Hi", "Joe");
+*many_arguments("Dave");
+```
+
+Result
+
+```
+Hello, Tom's class!
+Hi, Tom's class!
+Hi, Joe's class!
+*Dave, Tom's class!
+```
+
+---
+
+# Return exits the function
+
+``` php
+function early_return(){
+    echo "One";
+    return;
+    echo "Two";
+}
+
+early_return();
+```
+
+Result
+
+```
+One
+```
+
+---
+
+# Return is optional
+
+``` php
+function do_something(){
+    echo "Doing lots of stuff."
+}
+```
+
+---
+
+# Return a single result
+
+``` php
+function this_is_bad(){
+    return "one", "two", "three";
+}
+```
+
+Error
+
+```
+Parse error: syntax error, unexpected ',' in /code/EkeCxb on line 4
+```
+
+---
+
+# WordPress functions
+
+http://codex.wordpress.org/Function_Reference
+
+---
