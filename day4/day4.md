@@ -905,3 +905,389 @@ echo "<a href='page2.html'>Jump to Page 2</a>";
 echo "<a href=\"page2.html\">Jump to Page 2</a>";
               ^           ^
 ```
+
+---
+
+# String operators
+
+Concatenation
+
+``` php
+echo "Tom" . " " . "Auger";
+```
+
+Result
+
+```
+Tom Auger
+```
+
+---
+
+# Variable re-assignment
+
+``` php
+$my_name = "Tom";
+$my_name = $my_name . " " . "Auger";
+```
+
+Result
+
+```
+Tom Auger
+```
+
+---
+
+# Variable re-assignment
+
+``` php
+$my_name = "Tom Auger";
+$my_name = "The " . $my_name;
+```
+
+Result
+
+```
+The Tom Auger
+```
+
+---
+
+# String Functions
+
+http://php.net/manual/en/ref.strings.php
+
+* `trim()` Trims whitespace
+
+* `strstr()` Returns everything after (or before) a string
+
+* `substr()` Return a part of a string
+
+---
+
+# Trim
+
+``` php
+$messy_name = "  Tom Auger   ";
+$clean_name = trim($messy_name);
+
+echo $clean_name;
+```
+
+Returns
+
+```
+Tom Auger
+```
+
+No extra spaces.
+
+---
+
+# String search
+
+``` php
+$email = "teach.me.tom@outlook.com";
+echo strstr($email, "@");
+echo strstr($email, "@", true);
+```
+
+Returns
+
+```
+@outlook.com
+teach.me.tom
+```
+
+---
+
+# Substring
+
+``` php
+$text = "The quick brown fox";
+echo substr($text, 0, 1);
+echo substr($text, 4);
+echo substr($text, 4, 5);
+echo substr($text, -1);
+echo substr($text, -3);
+echo substr($text, -3, 1);
+```
+
+Returns
+
+```
+T
+quick brown fox
+quick
+x
+fox
+f
+```
+
+---
+
+# Substring
+
+``` php
+$text = "The quick brown fox";
+*echo substr($text, 0, 1);
+echo substr($text, 4);
+echo substr($text, 4, 5);
+echo substr($text, -1);
+echo substr($text, -3);
+echo substr($text, -3, 1);
+```
+
+Returns
+
+```
+*T
+quick brown fox
+quick
+x
+fox
+f
+```
+
+---
+
+# Substring
+
+``` php
+$text = "The quick brown fox";
+echo substr($text, 0, 1);
+*echo substr($text, 4);
+echo substr($text, 4, 5);
+echo substr($text, -1);
+echo substr($text, -3);
+echo substr($text, -3, 1);
+```
+
+Returns
+
+```
+T
+*quick brown fox
+quick
+x
+fox
+f
+```
+
+---
+
+# Substring
+
+``` php
+$text = "The quick brown fox";
+echo substr($text, 0, 1);
+echo substr($text, 4);
+*echo substr($text, 4, 5);
+echo substr($text, -1);
+echo substr($text, -3);
+echo substr($text, -3, 1);
+```
+
+Returns
+
+```
+T
+quick brown fox
+*quick
+x
+fox
+f
+```
+
+---
+
+# Substring
+
+``` php
+$text = "The quick brown fox";
+echo substr($text, 0, 1);
+echo substr($text, 4);
+echo substr($text, 4, 5);
+*echo substr($text, -1);
+echo substr($text, -3);
+echo substr($text, -3, 1);
+```
+
+Returns
+
+```
+T
+quick brown fox
+quick
+*x
+fox
+f
+```
+
+---
+
+# Substring
+
+``` php
+$text = "The quick brown fox";
+echo substr($text, 0, 1);
+echo substr($text, 4);
+echo substr($text, 4, 5);
+echo substr($text, -1);
+*echo substr($text, -3);
+echo substr($text, -3, 1);
+```
+
+Returns
+
+```
+T
+quick brown fox
+quick
+x
+*fox
+f
+```
+
+---
+
+# Substring
+
+``` php
+$text = "The quick brown fox";
+echo substr($text, 0, 1);
+echo substr($text, 4);
+echo substr($text, 4, 5);
+echo substr($text, -1);
+echo substr($text, -3);
+*echo substr($text, -3, 1);
+```
+
+Returns
+
+```
+T
+quick brown fox
+quick
+x
+fox
+*f
+```
+
+---
+
+# Putting it together
+
+``` php
+$email = "teach.me.tom@outlook.com";
+$name = strstr($email, "@", true);
+
+$domain = strstr($email, "@");
+echo $domain;
+
+$domain = substr($domain, 1);
+echo $domain;
+
+echo "Name: $name, Domain: $domain";
+```
+
+Result
+
+```
+@outlook.com
+outlook.com
+Name: teach.me.tom, Domain: outlook.com
+```
+
+---
+
+# Putting it together
+
+``` php
+$email = "teach.me.tom@outlook.com";
+$name = strstr($email, "@", true);
+
+*$domain = strstr($email, "@");
+*echo $domain;
+
+$domain = substr($domain, 1);
+echo $domain;
+
+echo "Name: $name, Domain: $domain";
+```
+
+Result
+
+```
+*@outlook.com
+outlook.com
+Name: teach.me.tom, Domain: outlook.com
+```
+
+---
+
+# Putting it together
+
+``` php
+$email = "teach.me.tom@outlook.com";
+$name = strstr($email, "@", true);
+
+$domain = strstr($email, "@");
+echo $domain;
+
+*$domain = substr($domain, 1);
+*echo $domain;
+
+echo "Name: $name, Domain: $domain";
+```
+
+Result
+
+```
+@outlook.com
+*outlook.com
+Name: teach.me.tom, Domain: outlook.com
+```
+
+---
+
+# Putting it together
+
+``` php
+$email = "teach.me.tom@outlook.com";
+$name = strstr($email, "@", true);
+
+$domain = strstr($email, "@");
+echo $domain;
+
+$domain = substr($domain, 1);
+echo $domain;
+
+*echo "Name: $name, Domain: $domain";
+```
+
+Result
+
+```
+@outlook.com
+outlook.com
+*Name: teach.me.tom, Domain: outlook.com
+```
+
+---
+
+# Function as argument
+
+``` php
+$email = "teach.me.tom@outlook.com";
+*$domain = strstr($email, "@");
+*$domain = substr($domain, 1);
+```
+
+... more compact
+
+``` php
+$email = "teach.me.tom@outlook.com";
+*$domain = substr(strstr($email, "@"), 1);
+```
