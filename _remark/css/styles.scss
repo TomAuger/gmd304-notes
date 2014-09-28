@@ -40,6 +40,13 @@ h1, h2, h3 {
 }
 
 .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
-.remark-code-line-highlighted {
-    background-color: rgba(255, 255, 255, .2);
+.remark-code-line.remark-code-line-highlighted,
+.code-highlight,
+.ch {
+    background-color: rgba(255, 255, 0, 0.85);
+    color: black;
+    
+    span {
+        color: black !important;
+    }
 }
