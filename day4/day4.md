@@ -10,14 +10,14 @@ WordPress Template Functions
 
 ---
 
-# Play along!
-
-http://codepad.viper-7.com/
+layout: true
+class: center, middle
 
 ---
 
-layout: true
-class: center, middle
+# Play along!
+
+http://codepad.viper-7.com/
 
 ---
 
@@ -81,6 +81,85 @@ Everything between the `<?php` ... `?>` must be __valid__ PHP.
 
 ---
 
+# PHP & HTML co-exist
+
+``` php
+<html>
+    <body>
+        <h1>The PHP language</h1>
+        <div class="date">
+            <?php
+                echo date( "Y" );
+            ?>
+        </div>
+    </body>
+</html>
+```
+
+---
+
+# PHP & HTML co-exist
+
+``` php
+<html>
+    <body>
+        <h1>The PHP language</h1>
+        <div class="date">
+*            <?php
+*                echo date( "Y" );
+*            ?>
+        </div>
+    </body>
+</html>
+```
+
+---
+
+# PHP on one line
+
+``` php
+<html>
+    <body>
+        <h1>The PHP language</h1>
+        <div class="date">
+*            <?php echo date( "Y" ); ?>
+        </div>
+    </body>
+</html>
+```
+
+---
+
+# PHP & HTML on one line
+
+``` php
+<html>
+    <body>
+        <h1>The PHP language</h1>
+        <div class="date">
+*            <p>Date: <?php echo date( "Y" ); ?></p>
+        </div>
+    </body>
+</html>
+```
+
+---
+
+# What the browser sees
+
+``` html
+<html>
+    <body>
+        <h1>The PHP language</h1>
+        <div class="date">
+*            <p>Date: 2014</p>
+        </div>
+    </body>
+</html>
+```
+
+---
+
 # PHP Language
 
 ``` php
@@ -108,7 +187,7 @@ Everything between the `<?php` ... `?>` must be __valid__ PHP.
 
 ---
 
-## PHP Delimiters
+# PHP Delimiters
 
 ``` php
 *<?php
@@ -135,7 +214,7 @@ Everything between the `<?php` ... `?>` must be __valid__ PHP.
 
 ---
 
-## Comments
+# Comments
 
 ``` php
 <?php
@@ -162,7 +241,7 @@ Everything between the `<?php` ... `?>` must be __valid__ PHP.
 
 ---
 
-## Variable assignment
+# Variable assignment
 
 ``` php
 <?php
@@ -295,9 +374,11 @@ $my_name = "Tom";
 echo $my_name;
 ```
 
-## Result:
+Result
 
+```
 Tom
+```
 
 ---
 
@@ -492,41 +573,6 @@ Function name.
 # Don't forget  ;-)
 
 `my_function( $argument_1, $argument_2 )`.ch[`;`]
-
----
-
-# Code review
-
-``` php
-<?php
-    // Define a variable
-    $my_name = "Tom";
-    
-    /*  Use echo to put the contents of the variable
-        onto the web page. (Output the variable) */
-    echo $my_name;
-    
-    if ( $my_name == "Tom" ){
-        $my_name = $my_name . " " . "Auger";
-    }
-    
-    function wrap_name_in_html ( $name ){
-        if ( ! empty ( $name ) ){
-            echo "<p>" . $name . "</p>";
-        }
-    }
-    
-    wrap_name_in_html( $my_name );
-?>
-```
-
----
-
-# Result
-
-``` html
-<p>Tom Auger</p>
-```
 
 ---
 
@@ -780,6 +826,10 @@ echo "<p>Some other text</p>";
 
 ---
 
+# PHP Language Components
+
+---
+
 # Scalar variables
 
 `$variable_name =` _expression_`;`
@@ -864,11 +914,12 @@ echo "Hello $my_name";
 echo 'Hello $my_name';
 ```
 
-## Results
+Result
 
-1. `Hello Tom`
-
-2. `Hello $my_name`
+```
+Hello Tom
+Hello $my_name
+```
 
 ---
 
@@ -880,7 +931,7 @@ echo "<a href="page2.html">Jump to Page 2</a>";
      ^        ^          ^                   ^
 ```
 
-`page2.html` is not valid PHP!
+`page2.html` is not inside any quotes!
 
 ---
 
@@ -976,7 +1027,7 @@ http://php.net/manual/en/ref.strings.php
 
 ``` php
 $messy_name = "  Tom Auger   ";
-$clean_name = trim($messy_name);
+$clean_name = trim( $messy_name );
 
 echo $clean_name;
 ```
@@ -995,8 +1046,8 @@ No extra spaces.
 
 ``` php
 $email = "teach.me.tom@outlook.com";
-echo strstr($email, "@");
-echo strstr($email, "@", true);
+echo strstr( $email, "@" );
+echo strstr( $email, "@", true );
 ```
 
 Returns
@@ -1012,12 +1063,12 @@ teach.me.tom
 
 ``` php
 $text = "The quick brown fox";
-echo substr($text, 0, 1);
-echo substr($text, 4);
-echo substr($text, 4, 5);
-echo substr($text, -1);
-echo substr($text, -3);
-echo substr($text, -3, 1);
+echo substr( $text, 0, 1 );
+echo substr( $text, 4 );
+echo substr( $text, 4, 5 );
+echo substr( $text, -1 );
+echo substr( $text, -3 );
+echo substr( $text, -3, 1 );
 ```
 
 Returns
@@ -1037,12 +1088,12 @@ f
 
 ``` php
 $text = "The quick brown fox";
-*echo substr($text, 0, 1);
-echo substr($text, 4);
-echo substr($text, 4, 5);
-echo substr($text, -1);
-echo substr($text, -3);
-echo substr($text, -3, 1);
+*echo substr( $text, 0, 1 );
+echo substr( $text, 4 );
+echo substr( $text, 4, 5 );
+echo substr( $text, -1 );
+echo substr( $text, -3 );
+echo substr( $text, -3, 1 );
 ```
 
 Returns
@@ -1062,12 +1113,12 @@ f
 
 ``` php
 $text = "The quick brown fox";
-echo substr($text, 0, 1);
-*echo substr($text, 4);
-echo substr($text, 4, 5);
-echo substr($text, -1);
-echo substr($text, -3);
-echo substr($text, -3, 1);
+echo substr( $text, 0, 1 );
+*echo substr( $text, 4 );
+echo substr( $text, 4, 5 );
+echo substr( $text, -1 );
+echo substr( $text, -3 );
+echo substr( $text, -3, 1 );
 ```
 
 Returns
@@ -1087,12 +1138,12 @@ f
 
 ``` php
 $text = "The quick brown fox";
-echo substr($text, 0, 1);
-echo substr($text, 4);
-*echo substr($text, 4, 5);
-echo substr($text, -1);
-echo substr($text, -3);
-echo substr($text, -3, 1);
+echo substr( $text, 0, 1 );
+echo substr( $text, 4 );
+*echo substr( $text, 4, 5 );
+echo substr( $text, -1 );
+echo substr( $text, -3 );
+echo substr( $text, -3, 1 );
 ```
 
 Returns
@@ -1112,12 +1163,12 @@ f
 
 ``` php
 $text = "The quick brown fox";
-echo substr($text, 0, 1);
-echo substr($text, 4);
-echo substr($text, 4, 5);
-*echo substr($text, -1);
-echo substr($text, -3);
-echo substr($text, -3, 1);
+echo substr( $text, 0, 1 );
+echo substr( $text, 4 );
+echo substr( $text, 4, 5 );
+*echo substr( $text, -1 );
+echo substr( $text, -3 );
+echo substr( $text, -3, 1 );
 ```
 
 Returns
@@ -1137,12 +1188,12 @@ f
 
 ``` php
 $text = "The quick brown fox";
-echo substr($text, 0, 1);
-echo substr($text, 4);
-echo substr($text, 4, 5);
-echo substr($text, -1);
-*echo substr($text, -3);
-echo substr($text, -3, 1);
+echo substr( $text, 0, 1 );
+echo substr( $text, 4 );
+echo substr( $text, 4, 5 );
+echo substr( $text, -1 );
+*echo substr( $text, -3 );
+echo substr( $text, -3, 1 );
 ```
 
 Returns
@@ -1162,12 +1213,12 @@ f
 
 ``` php
 $text = "The quick brown fox";
-echo substr($text, 0, 1);
-echo substr($text, 4);
-echo substr($text, 4, 5);
-echo substr($text, -1);
-echo substr($text, -3);
-*echo substr($text, -3, 1);
+echo substr( $text, 0, 1 );
+echo substr( $text, 4 );
+echo substr( $text, 4, 5 );
+echo substr( $text, -1 );
+echo substr( $text, -3 );
+*echo substr( $text, -3, 1 );
 ```
 
 Returns
@@ -1187,12 +1238,12 @@ fox
 
 ``` php
 $email = "teach.me.tom@outlook.com";
-$name = strstr($email, "@", true);
+$name = strstr( $email, "@", true );
 
-$domain = strstr($email, "@");
+$domain = strstr( $email, "@" );
 echo $domain;
 
-$domain = substr($domain, 1);
+$domain = substr( $domain, 1 );
 echo $domain;
 
 echo "Name: $name, Domain: $domain";
@@ -1212,12 +1263,12 @@ Name: teach.me.tom, Domain: outlook.com
 
 ``` php
 $email = "teach.me.tom@outlook.com";
-$name = strstr($email, "@", true);
+$name = strstr( $email, "@", true );
 
-*$domain = strstr($email, "@");
+*$domain = strstr( $email, "@" );
 *echo $domain;
 
-$domain = substr($domain, 1);
+$domain = substr( $domain, 1 );
 echo $domain;
 
 echo "Name: $name, Domain: $domain";
@@ -1237,12 +1288,12 @@ Name: teach.me.tom, Domain: outlook.com
 
 ``` php
 $email = "teach.me.tom@outlook.com";
-$name = strstr($email, "@", true);
+$name = strstr( $email, "@", true );
 
-$domain = strstr($email, "@");
+$domain = strstr( $email, "@" );
 echo $domain;
 
-*$domain = substr($domain, 1);
+*$domain = substr( $domain, 1 );
 *echo $domain;
 
 echo "Name: $name, Domain: $domain";
@@ -1262,12 +1313,12 @@ Name: teach.me.tom, Domain: outlook.com
 
 ``` php
 $email = "teach.me.tom@outlook.com";
-$name = strstr($email, "@", true);
+$name = strstr( $email, "@", true );
 
-$domain = strstr($email, "@");
+$domain = strstr( $email, "@" );
 echo $domain;
 
-$domain = substr($domain, 1);
+$domain = substr( $domain, 1 );
 echo $domain;
 
 *echo "Name: $name, Domain: $domain";
@@ -1287,15 +1338,15 @@ outlook.com
 
 ``` php
 $email = "teach.me.tom@outlook.com";
-*$domain = strstr($email, "@");
-*$domain = substr($domain, 1);
+*$domain = strstr( $email, "@" );
+*$domain = substr( $domain, 1 );
 ```
 
 ... more compact
 
 ``` php
 $email = "teach.me.tom@outlook.com";
-*$domain = substr(strstr($email, "@"), 1);
+*$domain = substr( strstr( $email, "@" ), 1 );
 ```
 
 ---
@@ -1404,10 +1455,10 @@ http://php.net/manual/en/ref.math.php
 $x1 = 200;
 $x2 = 400;
 
-$distance = abs($x1 - $x2);
+$distance = abs( $x1 - $x2 );
 echo $distance;
 
-$distance = abs($x2 - $x1);
+$distance = abs( $x2 - $x1 );
 echo $distance;
 ```
 
@@ -1422,10 +1473,10 @@ Result
 
 # Rounding
 ``` php
-echo round(0.25);
-echo round(0.75);
-echo round(-0.25);
-echo round(0.5);
+echo round( 0.25 );
+echo round( 0.75 );
+echo round( -0.25 );
+echo round( 0.5 );
 ```
 
 Result
@@ -1442,9 +1493,9 @@ Result
 # Maximum and minimum values
 
 ``` php
-echo max(-3, 5, 10, 20);
-echo min(-3, 5, 10, 20);
-echo max(min(-3, 5), min(10, 20));
+echo max( -3, 5, 10, 20 );
+echo min( -3, 5, 10, 20 );
+echo max( min( -3, 5 ), min( 10, 20 ) );
 ```
 
 Result
@@ -1459,11 +1510,11 @@ Result
 # Random numbers!
 
 ``` php
-echo rand(1, 10);
-echo rand(1, 10);
-echo rand(1, 10);
-echo rand(1, 10);
-echo rand(1, 10);
+echo rand( 1, 10 );
+echo rand( 1, 10 );
+echo rand( 1, 10 );
+echo rand( 1, 10 );
+echo rand( 1, 10 );
 ```
 
 Result
@@ -1481,13 +1532,13 @@ Result
 # Functions
 
 ``` php
-function double($value){
+function double( $value ){
     return $value * 2;
 }
 
-echo double(2);
-echo double(10);
-echo double(-5);
+echo double( 2 );
+echo double( 10 );
+echo double( -5 );
 ```
 
 Result
@@ -1503,13 +1554,13 @@ Result
 # Functions
 
 ``` php
-function square($value){
+function square( $value ){
     return $value * $value;
 }
 
-echo square(2);
-echo square(10);
-echo square(-5);
+echo square( 2 );
+echo square( 10 );
+echo square( -5 );
 ```
 
 Result
@@ -1621,17 +1672,17 @@ function no_arguments(){
     echo "Hello World!";
 }
 
-function one_argument($name){
+function one_argument( $name ){
     echo "Hello $name!";
 }
 
-function many_arguments($greeting, $name, $noun){
+function many_arguments( $greeting, $name, $noun ){
     echo "$greeting, $name's $noun!";
 }
 
 no_arguments();
-one_argument("class");
-many_arguments("Hi", "Joe", "friend");
+one_argument( "class" );
+many_arguments( "Hi", "Joe", "friend" );
 ```
 
 ```
@@ -1645,11 +1696,11 @@ Hi Joe's friend!
 # Required arguments
 
 ``` php
-function many_arguments($greeting, $name, $noun){
+function many_arguments( $greeting, $name, $noun ){
     echo "$greeting, $name's $noun!";
 }
 
-many_arguments("Hi", "Joe");
+many_arguments( "Hi", "Joe" );
 ```
 
 ---
@@ -1657,11 +1708,11 @@ many_arguments("Hi", "Joe");
 # Required arguments
 
 ``` php
-*function many_arguments($greeting, $name, $noun){
+*function many_arguments( $greeting, $name, $noun ){
     echo "$greeting, $name's $noun!";
 }
 
-*many_arguments("Hi", "Joe");
+*many_arguments( "Hi", "Joe" );
 ```
 
 ---
@@ -1690,9 +1741,9 @@ function many_arguments($greet = "Hello", $name = "Tom", $noun = "class"){
 }
 
 many_arguments();
-many_arguments("Hi");
-many_arguments("Hi", "Joe");
-many_arguments("Dave");
+many_arguments( "Hi" );
+many_arguments( "Hi", "Joe" );
+many_arguments( "Dave" );
 ```
 
 Result
@@ -1714,9 +1765,9 @@ function many_arguments($greet = "Hello", $name = "Tom", $noun = "class"){
 }
 
 many_arguments();
-many_arguments("Hi");
-many_arguments("Hi", "Joe");
-*many_arguments("Dave");
+many_arguments( "Hi" );
+many_arguments( "Hi", "Joe" );
+*many_arguments( "Dave" );
 ```
 
 Result
@@ -1776,8 +1827,616 @@ Parse error: syntax error, unexpected ',' in /code/EkeCxb on line 4
 
 ---
 
+# Includes
+
+You can `include` one file within another. This is like `@import` in CSS.
+
+This allows you to reuse a file in different contexts.
+
+It also keeps your PHP files specific to their tasks.
+
+---
+
+# Includes
+
+`file1.php`
+
+```php
+<?php
+    function square( $value ){
+        return $value * $value;
+    }
+?>
+```
+
+`file2.php`
+
+``` php
+<?php
+    include "file1.php";
+
+    echo square( 4 );
+?>
+```
+
+---
+
+# Includes
+
+`copyright.php`
+
+``` php
+<div class="copyright">
+    (c) <?php echo date( "Y" ); ?> Tom Auger
+</div>
+```
+
+`index.php`
+
+``` php
+<html>
+    <body>
+        <div class="main">
+            ... lots of stuff on your main page ...
+        </div>
+        
+        <?php include "copyright.php" ?>
+    </body>
+</html>
+```
+
+---
+
+# Includes
+
+`copyright.php`
+
+``` php
+<div class="copyright">
+    (c) <?php echo date( "Y" ); ?> Tom Auger
+</div>
+```
+
+`index.php`
+
+``` php
+<html>
+    <body>
+        <div class="main">
+            ... lots of stuff on your main page ...
+        </div>
+        
+*        <?php include "copyright.php" ?>
+    </body>
+</html>
+```
+
+---
+
+# Includes
+
+Result
+
+``` html
+<html>
+    <body>
+        <div class="main">
+            ... lots of stuff on your main page ...
+        </div>
+*        <div class="copyright">
+*            (c) 2014 Tom Auger
+*        </div>
+    </body>
+</html>
+```
+
+---
+
 # WordPress functions
 
 http://codex.wordpress.org/Function_Reference
 
 ---
+
+# Where do they go?
+
+* theme template files
+
+* functions.php
+
+* plugin files
+
+---
+
+# Template functions
+
+single.php
+
+``` php
+<?php
+get_header(); ?>
+	<div id="primary" class="content-area">
+		<div id="content" class="site-content" role="main">
+			<?php
+				// Start the Loop.
+				while ( have_posts() ) : the_post();
+					get_template_part( 'content' );
+				endwhile;
+			?>
+		</div>
+	</div>
+<?php
+get_sidebar( 'content' );
+get_sidebar();
+get_footer();
+```
+
+---
+
+# Single Post
+
+``` php
+<?php
+*get_header(); ?>
+	<div id="primary" class="content-area">
+		<div id="content" class="site-content" role="main">
+			<?php
+				// Start the Loop.
+				while ( have_posts() ) : the_post();
+					get_template_part( 'content' );
+				endwhile;
+			?>
+		</div>
+	</div>
+<?php
+get_sidebar( 'content' );
+get_sidebar();
+get_footer();
+```
+
+`include`s "header.php"
+
+---
+
+# Single Post
+
+``` php
+<?php
+get_header(); ?>
+*	<div id="primary" class="content-area">
+*		<div id="content" class="site-content" role="main">
+			<?php
+				// Start the Loop.
+				while ( have_posts() ) : the_post();
+					get_template_part( 'content' );
+				endwhile;
+			?>
+*		</div>
+*	</div>
+<?php
+get_sidebar( 'content' );
+get_sidebar();
+get_footer();
+```
+
+HTML to create the container DIVs
+
+---
+
+# Single Post
+
+``` php
+<?php
+get_header(); ?>
+	<div id="primary" class="content-area">
+		<div id="content" class="site-content" role="main">
+			<?php
+*				// Start the Loop.
+*				while ( have_posts() ) : the_post();
+					get_template_part( 'content' );
+*				endwhile;
+			?>
+		</div>
+	</div>
+<?php
+get_sidebar( 'content' );
+get_sidebar();
+get_footer();
+```
+
+The "Loop", where Post content is displayed
+
+---
+
+# Single Post
+
+``` php
+<?php
+get_header(); ?>
+	<div id="primary" class="content-area">
+		<div id="content" class="site-content" role="main">
+			<?php
+				// Start the Loop.
+				while ( have_posts() ) : the_post();
+*					get_template_part( 'content' );
+				endwhile;
+			?>
+		</div>
+	</div>
+<?php
+get_sidebar( 'content' );
+get_sidebar();
+get_footer();
+```
+
+`include`s "content.php"
+
+---
+
+# Single Post
+
+``` php
+<?php
+get_header(); ?>
+	<div id="primary" class="content-area">
+		<div id="content" class="site-content" role="main">
+			<?php
+				// Start the Loop.
+				while ( have_posts() ) : the_post();
+					get_template_part( 'content' );
+				endwhile;
+			?>
+		</div>
+	</div>
+<?php
+*get_sidebar( 'content' );
+get_sidebar();
+get_footer();
+```
+
+`include`s "sidebar-content.php"
+
+---
+
+# Single Post
+
+``` php
+<?php
+get_header(); ?>
+	<div id="primary" class="content-area">
+		<div id="content" class="site-content" role="main">
+			<?php
+				// Start the Loop.
+				while ( have_posts() ) : the_post();
+					get_template_part( 'content' );
+				endwhile;
+			?>
+		</div>
+	</div>
+<?php
+get_sidebar( 'content' );
+*get_sidebar();
+get_footer();
+```
+
+`include`s "sidebar.php"
+
+---
+
+# Single Post
+
+``` php
+<?php
+get_header(); ?>
+	<div id="primary" class="content-area">
+		<div id="content" class="site-content" role="main">
+			<?php
+				// Start the Loop.
+				while ( have_posts() ) : the_post();
+					get_template_part( 'content' );
+				endwhile;
+			?>
+		</div>
+	</div>
+<?php
+get_sidebar( 'content' );
+get_sidebar();
+*get_footer();
+```
+
+`include`s "footer.php"
+
+---
+
+# Post Content
+
+content.php
+
+``` php
+<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+	<?php the_post_thumbnail(); ?>
+
+	<header class="entry-header">
+		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+
+		<div class="entry-meta">
+			<?php edit_post_link( __( 'Edit', 'twentyfourteen' ),  
+                '<span class="edit-link">', '</span>' ); ?>
+		</div>
+	</header>
+
+	<div class="entry-content">
+		<?php the_content( __( 'Continue reading', 'twentyfourteen' ) ); ?>
+	</div>
+	
+	<?php the_tags( '<footer class="entry-meta"><span class="tag-links">',  
+        '', '</span></footer>' ); ?>
+</article>
+```
+
+---
+
+# Post Content
+
+``` php
+*<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+	<?php the_post_thumbnail(); ?>
+
+	<header class="entry-header">
+		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+
+		<div class="entry-meta">
+			<?php edit_post_link( __( 'Edit', 'twentyfourteen' ),  
+                '<span class="edit-link">', '</span>' ); ?>
+		</div>
+	</header>
+
+	<div class="entry-content">
+		<?php the_content( __( 'Continue reading', 'twentyfourteen' ) ); ?>
+	</div>
+	
+	<?php the_tags( '<footer class="entry-meta"><span class="tag-links">',  
+        '', '</span></footer>' ); ?>
+*</article>
+```
+
+Wrap everything in `ARTICLE` element
+
+---
+
+# Post Content
+
+``` php
+*<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+	<?php the_post_thumbnail(); ?>
+
+	<header class="entry-header">
+		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+
+		<div class="entry-meta">
+			<?php edit_post_link( __( 'Edit', 'twentyfourteen' ),  
+                '<span class="edit-link">', '</span>' ); ?>
+		</div>
+	</header>
+
+	<div class="entry-content">
+		<?php the_content( __( 'Continue reading', 'twentyfourteen' ) ); ?>
+	</div>
+	
+	<?php the_tags( '<footer class="entry-meta"><span class="tag-links">',  
+        '', '</span></footer>' ); ?>
+</article>
+```
+
+Set the CSS `id` and `class` for `ARTICLE`
+
+---
+
+# Post Content
+
+``` php
+<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+*	<?php the_post_thumbnail(); ?>
+
+	<header class="entry-header">
+		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+
+		<div class="entry-meta">
+			<?php edit_post_link( __( 'Edit', 'twentyfourteen' ),  
+                '<span class="edit-link">', '</span>' ); ?>
+		</div>
+	</header>
+
+	<div class="entry-content">
+		<?php the_content( __( 'Continue reading', 'twentyfourteen' ) ); ?>
+	</div>
+	
+	<?php the_tags( '<footer class="entry-meta"><span class="tag-links">',  
+        '', '</span></footer>' ); ?>
+</article>
+```
+
+Display "Featured Image" for this Post
+
+---
+
+# Post Content
+
+``` php
+<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+	<?php the_post_thumbnail(); ?>
+
+*	<header class="entry-header">
+		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+
+		<div class="entry-meta">
+			<?php edit_post_link( __( 'Edit', 'twentyfourteen' ),  
+                '<span class="edit-link">', '</span>' ); ?>
+		</div>
+*	</header>
+
+	<div class="entry-content">
+		<?php the_content( __( 'Continue reading', 'twentyfourteen' ) ); ?>
+	</div>
+	
+	<?php the_tags( '<footer class="entry-meta"><span class="tag-links">',  
+        '', '</span></footer>' ); ?>
+</article>
+```
+
+Create a `HEADER` element
+
+---
+
+# Post Content
+
+``` php
+<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+	<?php the_post_thumbnail(); ?>
+
+	<header class="entry-header">
+*		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+
+		<div class="entry-meta">
+			<?php edit_post_link( __( 'Edit', 'twentyfourteen' ),  
+                '<span class="edit-link">', '</span>' ); ?>
+		</div>
+	</header>
+
+	<div class="entry-content">
+		<?php the_content( __( 'Continue reading', 'twentyfourteen' ) ); ?>
+	</div>
+	
+	<?php the_tags( '<footer class="entry-meta"><span class="tag-links">',  
+        '', '</span></footer>' ); ?>
+</article>
+```
+
+Display Posts' title, wrapped in `H1`
+
+---
+
+# Post Content
+
+``` php
+<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+	<?php the_post_thumbnail(); ?>
+
+	<header class="entry-header">
+		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+
+		<div class="entry-meta">
+*			<?php edit_post_link( __( 'Edit', 'twentyfourteen' ),  
+*                '<span class="edit-link">', '</span>' ); ?>
+		</div>
+	</header>
+
+	<div class="entry-content">
+		<?php the_content( __( 'Continue reading', 'twentyfourteen' ) ); ?>
+	</div>
+	
+	<?php the_tags( '<footer class="entry-meta"><span class="tag-links">',  
+        '', '</span></footer>' ); ?>
+</article>
+```
+
+For logged-in admins, an "edit" link
+
+---
+
+# Post Content
+
+``` php
+<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+	<?php the_post_thumbnail(); ?>
+
+	<header class="entry-header">
+		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+
+		<div class="entry-meta">
+			<?php edit_post_link( __( 'Edit', 'twentyfourteen' ),  
+                '<span class="edit-link">', '</span>' ); ?>
+		</div>
+	</header>
+
+*	<div class="entry-content">
+		<?php the_content( __( 'Continue reading', 'twentyfourteen' ) ); ?>
+*	</div>
+	
+	<?php the_tags( '<footer class="entry-meta"><span class="tag-links">',  
+        '', '</span></footer>' ); ?>
+</article>
+```
+
+`DIV` to contain the main Post content
+
+---
+
+# Post Content
+
+``` php
+<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+	<?php the_post_thumbnail(); ?>
+
+	<header class="entry-header">
+		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+
+		<div class="entry-meta">
+			<?php edit_post_link( __( 'Edit', 'twentyfourteen' ),  
+                '<span class="edit-link">', '</span>' ); ?>
+		</div>
+	</header>
+
+	<div class="entry-content">
+*		<?php the_content( __( 'Continue reading', 'twentyfourteen' ) ); ?>
+	</div>
+	
+	<?php the_tags( '<footer class="entry-meta"><span class="tag-links">',  
+        '', '</span></footer>' ); ?>
+</article>
+```
+
+Output the content up to the `more` break.
+
+---
+
+# Post Content
+
+``` php
+<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+	<?php the_post_thumbnail(); ?>
+
+	<header class="entry-header">
+		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+
+		<div class="entry-meta">
+			<?php edit_post_link( __( 'Edit', 'twentyfourteen' ),  
+                '<span class="edit-link">', '</span>' ); ?>
+		</div>
+	</header>
+
+	<div class="entry-content">
+		<?php the_content( __( 'Continue reading', 'twentyfourteen' ) ); ?>
+	</div>
+	
+*	<?php the_tags( '<footer class="entry-meta"><span class="tag-links">',  
+*        '', '</span></footer>' ); ?>
+</article>
+```
+
+Display a list of tags for this Post
+
+---
+
+# Day 4 Review
+
+* `<?php ?>` tags
+
+* Mixing PHP and HTML
+
+* Comments
+
+* Scalar variables
+
+* Function definitions
+
