@@ -37,5 +37,7 @@ h1, h2, h3 {
   color: black; }
   .remark-code-line.remark-code-line-highlighted span, .code-highlight span, .ch span {
     color: black !important; }
+  .remark-code-line.remark-code-line-highlighted code, .code-highlight code, .ch code {
+    background-color: transparent; }
 
 /*# sourceMappingURL=styles.css.map */
