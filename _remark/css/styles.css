@@ -23,7 +23,13 @@ h1, h2, h3 {
 .center pre {
   text-align: left; }
 
+.remark-code {
+  display: block;
+  padding: 0.5em; }
+
 .remark-code, .remark-inline-code {
+  background-color: #CCC;
+  color: black;
   font-family: 'Ubuntu Mono'; }
 
 .remark-code-line.remark-code-line-highlighted, .code-highlight, .ch {
