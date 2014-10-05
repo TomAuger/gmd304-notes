@@ -238,3 +238,325 @@ echo "[2,1] " . $two_dee[2][1], "<br>";
 [2,0] Pat
 [2,1] ???
 ```
+
+---
+
+# Array Iteration
+
+"Iterating through an array" refers to doing something with each element of the array.
+
+This is useful for outputting results, searching, calculating totals, or even transforming the contents of the array itself.
+
+This is most often accomplished through "loops".
+
+---
+
+# foreach
+
+``` php
+$names = array( "Tom", "Joe", "Dan", "Bob", "Jim", "Tim",  
+                "Some other guy with a really long name!" );
+
+// Let's iterate through this array.
+foreach( $names as $name ){
+	echo $name, "<br>";
+}
+```
+
+```
+Tom
+Joe
+Dan
+Bob
+Jim
+Tim
+Some other guy with a really long name!
+```
+
+---
+
+# Anatomy of "foreach"
+
+`foreach( $names as $name ){ // code ... }`
+
+---
+
+# Anatomy of "foreach"
+
+.ch[`foreach`]`( $names as $name ){ // code ... }`
+
+"foreach" loop keyword
+
+---
+
+# Anatomy of "foreach"
+
+`foreach`.ch[`( $names as $name )`]`{ // code ... }`
+
+Loop expression
+
+---
+
+# Anatomy of "foreach"
+
+`foreach( `.ch[`$names`] ` as $name ){ // code ... }`
+
+The array we're looping through
+
+---
+
+
+# Anatomy of "foreach"
+
+`foreach( $names as ` .ch[`$name`] ` ){ // code ... }`
+
+Variable to which we're assigning each element of the array 
+
+---
+
+# Anatomy of "foreach"
+
+`foreach( $names as $name )`.ch[`{ // code ... }`]
+
+Code block, executed once per element
+
+---
+
+# Better HTML output
+
+``` php
+// We can do better. Let's wrap some HTML.
+echo "<ul>";
+foreach( $names as $name ){
+	echo "<li>Name: $name</li>";
+}
+echo "</ul>";
+```
+
+``` html
+<ul>
+    <li>Name: Tom</li>
+    <li>Name: Joe</li>
+    <li>Name: Dan</li>
+    <li>Name: Bob</li>
+    <li>Name: Jim</li>
+    <li>Name: Tim</li>
+    <li>Name: Some other guy with a really long name!</li>
+</ul>
+```
+
+---
+
+# Passing by reference
+
+``` php
+// Edit "in place" - pass by reference
+foreach( $names as &$name ){ // <-- note the "&" in front of $name
+	$name = strtolower( $name );
+}
+print_r( $names );
+```
+
+```
+Array ( [0] => tom [1] => joe [2] => dan [3] => bob [4] => jim  
+        [5] => tim [6] => some other guy with a really long name! )
+```
+
+`&$name` points to the __actual element__ inside `$names`. Changing it inside the loop changes the array (permanently).
+
+---
+
+# "for" loops
+
+``` php
+// There's another way to loop.
+for ( $i = 0; $i < 10; $i = $i + 1 ){
+	echo "$i", "<br>";
+}
+```
+
+```
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+```
+
+---
+
+# "for" loop expression
+
+`for ( $i = 0; $i < 10; $i = $i + 1 ){}`
+
+* Starting with $i at 0
+* If $i < 10, execute the block
+* Then add 1 to $i
+* If $i is 10 or more, stop the loop
+
+---
+
+# Anatomy of a "for" loop
+
+`for ( $i = 0; $i < 10; $i = $i + 1 ){}`
+
+---
+
+# Anatomy of a "for" loop
+
+.ch[`for`] `( $i = 0; $i < 10; $i = $i + 1 ){}`
+
+"for" loop keyword
+
+---
+
+# Anatomy of a "for" loop
+
+`for` .ch[`( $i = 0; $i < 10; $i = $i + 1 )`]`{}`
+
+Loop expression
+
+---
+
+
+# Anatomy of a "for" loop
+
+`for (` .ch[`$i = 0;`] `$i < 10; $i = $i + 1 ){}`
+
+Loop initializer. Called only once before the loop is started.
+
+---
+
+# Anatomy of a "for" loop
+
+`for ( $i = 0;` .ch[`$i < 10;`] `$i = $i + 1 ){}`
+
+Loop condition. If "true", the loop block is executed. If "false" the loop block is skipped and the loop is terminated.
+
+---
+
+# Anatomy of a "for" loop
+
+`for ( $i = 0; $i < 10;` .ch[`$i = $i + 1`] `){}`
+
+Post-loop expression. Evaluated at the end of every loop. Usually used to change the loop variable so it eventually fails the test condition.
+
+(Otherwise you get an "infinite loop")
+
+---
+
+# Anatomy of a "for" loop
+
+`for ( $i = 0; $i < 10; $i = $i + 1 )`.ch[`{}`]
+
+Loop block. All code in this block is executed once per loop iteration.
+
+---
+
+# Autoincrement
+
+``` php
+for ( $i = 0; $i < 10; $i++ ){
+	echo "$i", "<br>";
+}
+```
+
+`$i++` is just a snappier version of `$i = $i + 1;`
+
+---
+
+# For loops and arrays
+
+``` php
+// Now, let's try it on our array.
+for ( $i = 0; $i < count( $names ); $i++ ){
+	echo "[$i] " . $names[$i], "<br>"; 
+}
+```
+
+```
+[0] Tom
+[1] Joe
+[2] Dan
+[3] Bob
+[4] Jim
+[5] Tim
+[6] Some other guy with a really long name!
+```
+
+---
+
+# For loops and arrays
+
+``` php
+// Now, let's try it on our array.
+for ( $i = 0; $i < count( $names ); $i++ ){
+	echo "[$i] " . $names[$i], "<br>"; 
+}
+```
+
+Since we're using `<` for our condition, we don't have to do `count( $names ) - 1`
+
+This is one of the reasons why a zero-indexed array is useful.
+
+---
+
+# Complex variables
+
+``` php
+// Don't like having $names[i] outside the quotes?
+for ( $i = 0; $i < count( $names ); $i++ ){
+	echo "[$i] {$names[$i]}", "<br>"; 
+}
+```
+
+When subscripting an array within double quotes, help the parser out by surrounding the expression in `{}`
+
+---
+
+# Changing the "step"
+
+``` php
+// Every other element
+for ( $i = 0; $i < count( $names ); $i = $i + 2 ){
+	echo "[$i] {$names[$i]}", "<br>"; 
+}
+
+// Backward?
+for ( $i = count( $names ) - 1; $i > -1; $i -= 1 ){
+	echo "[$i] {$names[$i]}", "<br>"; 
+}
+```
+
+---
+
+# Better backward
+
+``` php
+// Less awkward, once you're used to it
+for ( $i = count( $names ); $i--; ){
+	echo "[$i] {$names[$i]}", "<br>"; 
+}
+```
+
+The condition is evaluated _before_ the `--` is applied to $i, but the `--` happens _before_ we enter the loop, so the first item is `count( $names ) - 1` after all.
+
+`0` is considered `false` so when we hit `0`, the test fails and the loop terminates.
+
+---
+
+# Quick exercises
+
+1. Loop through some names, displaying each name in a random colour (use inline CSS `rgb()`)
+2. Loop backward, displaying the last name and only every third name after that.
+
+---
+
+# Not-so-quick exercises
+1. Modify your names array, swapping any two vowels (like "i" and "o") using `str_ireplace()`. Use `print_r()` to prove you've altered the array.
+2. Loop through your names array, and, using either `str_shuffle()` or `strrev()`, scramble the letters of each name, and then output them with proper capitalization.
