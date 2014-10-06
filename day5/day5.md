@@ -585,3 +585,167 @@ The condition is evaluated _before_ the `--` is applied to $i, but the `--` happ
 # Not-so-quick exercises
 1. Modify your names array, swapping any two vowels (like "i" and "o") using `str_ireplace()`. Use `print_r()` to prove you've altered the array.
 2. Loop through your names array, and, using either `str_shuffle()` or `strrev()`, scramble the letters of each name, and then output them with proper capitalization.
+
+---
+
+# Associative Arrays
+
+Associative arrays are a lot like databases - they allow us to _associate_ a __value__ with a __key__.
+
+This is very useful for quickly accessing a specific piece of data.
+
+---
+
+# Associative array construction
+
+``` php
+// Use the => to separate key => value
+$favourite_colours = array(
+	"Tom" => "green",
+	"Ben" => "blue",
+	"Joe" => "yellow",
+	"May" => "pink",
+	"Amy" => "orange"
+);
+
+echo $favourite_colours["Tom"];
+```
+
+```
+green
+```
+
+---
+
+# Complex variables again
+
+``` php
+echo "Tom's favourite colour is {$favourite_colours['Tom']}";
+```
+
+```
+Tom's favourite colour is green
+```
+
+---
+
+# Associative foreach
+
+``` php
+// Let's loop through these items
+foreach( $favourite_colours as $key => $value ){
+    // use {} to help separate $key from 's
+	echo "{$key}'s favourite colour is $value", "<br>";
+}
+```
+
+```
+Tom's favourite colour is green
+Ben's favourite colour is blue
+Joe's favourite colour is yellow
+May's favourite colour is pink
+Amy's favourite colour is orange
+```
+
+---
+
+# Accessing just the keys
+
+``` php
+// Can I just access the names (keys)?
+print_r( array_keys( $favourite_colours ) );
+```
+
+```
+Array ( [0] => Tom [1] => Ben [2] => Joe [3] => May [4] => Amy )
+```
+
+`array_keys()` returns a (regular) array.
+
+---
+
+# Looping through keys
+
+``` php
+// We can use this in a loop, too!
+$names = array_keys( $favourite_colours );
+for ( $i = 0; $i < count( $names ); $i = $i + 2 ){
+	echo "$i: {$names[$i]}: {$favourite_colours[$names[$i]]}", "<br>";
+}
+```
+
+```
+0: Tom: green
+2: Joe: yellow
+4: Amy: orange
+```
+
+---
+
+# Looping through values
+
+``` php
+// Can we access just the colours?
+print_r( array_values( $favourite_colours ) );
+```
+
+```
+Array ( [0] => green [1] => blue [2] => yellow  
+        [3] => pink [4] => orange )
+```
+
+---
+
+# Values can be arrays
+
+``` php
+$users = array(
+	"tauger" => array( "Tom Auger", "green", "admin",  
+                        "teach.me.tom@outlook.com" ),
+                        
+	"smelly_92" => array( "Dan Brown", "brown", "editor",  
+                        "dbrown@gmail.com" ),
+                        
+	"ninjat" => array( "Michael Boren", "yellow", "contributor",  
+                        "pizzadude@yahoo.ca" )
+);
+```
+
+---
+
+# Or associative arrays
+
+``` php
+$users = array(
+	"tauger" => array( 
+		"full_name" => "Tom Auger", 
+		"fav_colour" => "green", 
+		"access_level" => "admin", 
+		"email" => "teach.me.tom@outlook.com"
+	),
+	"smelly_92" => array( 
+		"full_name" => "Dan Brown", 
+		"fav_colour" => "brown", 
+		"access_level" => "editor", 
+		"email" => "dbrown@gmail.com"
+	),
+	"ninjat" => array( 
+		"full_name" => "Michael Boren", 
+		"fav_colour" => "yellow", 
+		"access_level" => "contributor", 
+		"email" => "pizzadude@yahoo.ca"
+	)
+);
+```
+
+---
+
+# Or associative arrays
+
+``` php
+echo $users['tauger']['access_level'];
+```
+
+```
+admin
+```
