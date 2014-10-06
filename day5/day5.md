@@ -100,6 +100,8 @@ echo "5: " . $names[5], "<br>";
 5: Tim
 ```
 
+0-indexed arrays means the 1st element is at index 0 (_not_ 1).
+
 ---
 
 # Array length
@@ -188,24 +190,24 @@ Movin' on...
 An array can even contain another array! This is called a "multi-dimensional" array
 
 ``` php
-$two_dee = array(
-	array( "Tom", "boy" ),
-	array( "Amy", "girl" ),
-	array( "Pat", "???" )
+$triangle = array(
+	array( 50, 0 ),
+	array( 100, 100 ),
+	array( 0, 100 )
 );
 
-print_r( $two_dee );
+print_r( $triangle );
 ```
 
 ```
-Array ( [0] => Array ( [0] => Tom [1] => boy )
-        [1] => Array ( [0] => Amy [1] => girl ) 
-        [2] => Array ( [0] => Pat [1] => ??? ) )
+Array ( [0] => Array ( [0] => 50 [1] => 0 )
+        [1] => Array ( [0] => 100 [1] => 100 ) 
+        [2] => Array ( [0] => 0 [1] => 100 ) )
 ```
 
 ---
 
-# Top-level elements are Arrays
+# 1st dimension is array
 
 ``` php
 // WRONG generates notice
@@ -218,7 +220,7 @@ print_r( $two_dee[0] );
 ```
 Notice: Array to string conversion in /code/ChSya3 on line 10
 Array
-Array ( [0] => Tom [1] => boy )
+Array ( [0] => 50 [1] => 0 )
 ```
 
 ---
@@ -226,17 +228,17 @@ Array ( [0] => Tom [1] => boy )
 # Subscripting 2D arrays
 
 ``` php
-echo "[0,0] " . $two_dee[0][0], "<br>";
-echo "[0,1] " . $two_dee[0][1], "<br>";
-echo "[2,0] " . $two_dee[2][0], "<br>";
-echo "[2,1] " . $two_dee[2][1], "<br>";
+echo "[0,0] " . $triangle[0][0], "<br>";
+echo "[0,1] " . $triangle[0][1], "<br>";
+echo "[2,0] " . $triangle[2][0], "<br>";
+echo "[2,1] " . $triangle[2][1], "<br>";
 ```
 
 ```
-[0,0] Tom
-[0,1] boy
-[2,0] Pat
-[2,1] ???
+[0,0] 50
+[0,1] 0
+[2,0] 0
+[2,1] 100
 ```
 
 ---
