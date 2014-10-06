@@ -749,3 +749,328 @@ echo $users['tauger']['access_level'];
 ```
 admin
 ```
+
+Associative arrays used this way are often called "records", just like database entries.
+
+---
+
+# Logic and Conditionals
+
+---
+
+# Booleans review
+
+``` php
+// Boolean review
+$true = true;
+$false = false;
+
+echo $true, "<br>"; // Echoes "1"
+echo $false, "<br>"; // Echoes nothing
+```
+
+```
+1
+```
+
+---
+
+# Testing with "if"
+
+``` php
+if ( true ){
+	echo "Yes, it's true!", "<br>";
+}
+
+if ( false ){
+	echo "You will never see this message."; // Doesn't execute
+}
+```
+
+```
+Yes, it's true!
+```
+
+---
+
+# Evaluating other values
+
+When testing with `if()` a number of surprising things can be evaluated as Booleans for "truth" or "falsity".
+
+* Numbers other than 0 are `true`.
+* 0 evaluates to `false`
+* Strings all evaluate to `true`
+* Empty strings evaluate to `false`
+* Non-empty arrays evaluate to `true`
+* Empty arrays are `false`
+
+---
+
+# Strings
+
+``` php
+if ( "something" ){ // true
+	echo "I got something", "<br>";
+}
+
+if ( "" ){ // false
+	echo "This will never show up";
+}
+```
+
+```
+I got something
+```
+
+---
+
+# Strings
+
+This is a useful pattern. Consider the following:
+
+``` php
+<p>Written by: 
+<?php echo get_the_author_link(); ?></p>
+```
+
+If the results of `get_the_author_link()` are empty, you will still see "Written by:" with nothing after it!
+
+---
+
+# Strings
+
+Now, try wrapping this in a conditional:
+
+``` php
+<?php
+$link = get_the_author_link();
+if ( $link ){
+    echo "<p>Written by: $link</p>";
+}
+?>
+```
+
+Only outputs the line if the author actually supplied a link URL.
+
+---
+
+# Numbers
+
+``` php
+// Numbers
+if ( 1 ){ //true
+	echo "Any number is true", "<br>";
+}
+
+if ( 42 ){ //true
+	echo "This is very true", "<br>";
+}
+
+if ( -1 ){ //true
+	echo "Surprisingly, this is true too", "<br>";
+}
+
+if ( 0 ){ //false
+	echo "Except for 0.";
+}
+```
+
+```
+Any number is true
+This is very true
+Surprisingly, this is true too
+```
+
+---
+
+# Numbers
+
+This can be a useful pattern too. Consider:
+
+``` php
+<p><?php echo get_comments_number( get_the_ID() ); ?> comments:</p>
+(list comments...)
+```
+
+Or
+
+``` php
+<?php
+$num_comments = get_comments_number( get_the_ID() );
+if ( $num_comments ){
+    echo "<p>$num_comments comments:</p>";
+    // list comments...
+}
+?>
+```
+
+---
+
+# Arrays
+
+``` php
+$some_array = array( "a", "b", "c" );
+if ( $some_array ){ // true
+	echo "Yes, there are items in this array", "<br>";
+}
+
+$empty_array = array();
+if ( $empty_array ){ // false
+	echo "No, this array is empty";
+}
+```
+
+```
+Yes, there are items in this array
+```
+
+---
+
+# Arrays
+
+Very useful:
+
+``` php
+$comments = get_comments(); // Returns an array
+if ( $comments ){
+    // Only show comments list if there actually are comments
+}
+```
+
+---
+
+# Negation
+
+``` php
+if ( $show_it ){
+	echo "Yes!"; // Doesn't execute
+}
+
+// Negation
+
+if ( ! $show_it ){
+	echo "No!", "<br>"; // Executes
+}
+```
+
+```
+No!
+```
+
+`!` is the "not" operator.
+
+(Read: "if not $show_it")
+
+---
+
+# Else
+
+``` php
+$show_it = true;
+
+if ( $show_it ){
+	echo "Showing it", "<br>"; // Displays
+} else {
+	echo "Not showing it", "<br>"; // Doesn't execute
+}
+```
+
+```
+Showing it
+```
+
+---
+
+# Else
+
+``` php
+$show_it = false; // switch it up!
+
+if ( $show_it ){
+	echo "Showing it", "<br>"; // Doesn't execute
+} else {
+	echo "Not showing it", "<br>"; // Displays
+}
+```
+
+```
+Not showing it
+```
+
+---
+
+# Numeric expressions
+
+``` php
+$number = 5;
+if ( $number < 10 ){
+	echo "Less than 10!", "<br>";
+}
+
+if ( $number > 2 ){
+	echo "Greater than 2!", "<br>";
+}
+
+if ( $number >= 5 ){
+	echo "Greater or equal to 5!", "<br>";
+}
+
+if ( $number == 5 ){
+	echo "Is equal to 5!", "<br>";
+}
+
+if ( $number != 4 ){
+	echo "Is not equal to 4!", "<br>";
+}
+```
+
+---
+
+# Scope
+
+"Scope" refers to the accessibility of variables in different contexts within your program.
+
+---
+
+
+# Function scope
+
+Variables defined in functions are not accessible outside those functions
+
+``` php
+function get_name( $user ){
+    $name = $user['full_name'];
+    return $name;
+}
+
+echo $name; // undefined
+```
+
+---
+
+# Outer scope
+
+Variables defined outside functions are not accessible in the functions unless passed as an argument or declared with the `global` keyword.
+
+``` php
+$names = array ( "Tom", "Dick", "Harry" );
+
+function get_random_name(){
+    // Fail. Doesn't have access to $names
+    return $names[rand(0, count( $names ) - 1];
+}
+```
+
+---
+
+# Global scope
+
+``` php
+$names = array ( "Tom", "Dick", "Harry" );
+
+function get_random_name(){
+    // Grant access to $names for this function
+    global $names;
+    return $names[rand(0, count( $names ) - 1];
+}
+```
