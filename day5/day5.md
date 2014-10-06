@@ -301,9 +301,25 @@ Loop expression
 
 # Anatomy of "foreach"
 
+`foreach( $names as $name )`.ch[`{ // code ... }`]
+
+Code block, executed once per element
+
+---
+
+# Anatomy of "foreach"
+
 `foreach( `.ch[`$names`] ` as $name ){ // code ... }`
 
 The array we're looping through
+
+---
+
+# Anatomy of "foreach"
+
+`foreach( $names` .ch[`as`] `$name ){ // code ... }`
+
+Required keyword `as`
 
 ---
 
@@ -318,9 +334,9 @@ Variable to which we're assigning each element of the array
 
 # Anatomy of "foreach"
 
-`foreach( $names as $name )`.ch[`{ // code ... }`]
+`foreach( $names as $name ){` .ch[`$name`] `}`
 
-Code block, executed once per element
+`$name` changes for every iteration of the loop.
 
 ---
 
@@ -425,6 +441,13 @@ Loop expression
 
 ---
 
+# Anatomy of a "for" loop
+
+`for ( $i = 0; $i < 10; $i = $i + 1 )`.ch[`{}`]
+
+Loop block. All code in this block is executed once per loop iteration.
+
+---
 
 # Anatomy of a "for" loop
 
@@ -454,9 +477,9 @@ Post-loop expression. Evaluated at the end of every loop. Usually used to change
 
 # Anatomy of a "for" loop
 
-`for ( $i = 0; $i < 10; $i = $i + 1 )`.ch[`{}`]
+`for ( $i = 0; $i < 10; $i = $i + 1 ){` .ch[`$i`] `}`
 
-Loop block. All code in this block is executed once per loop iteration.
+`$i` changes for each iteration of the loop.
 
 ---
 
